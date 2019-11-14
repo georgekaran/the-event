@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const proxy = require('http-proxy-middleware');
 
 class AppController {
     constructor() {
@@ -21,7 +22,7 @@ class AppController {
     }
 
     routes() {
-        require('./app/controller/UserController')(this.express)
+        require('./app/controllers/v1/index')(this.express)
     }
 }
 

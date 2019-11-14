@@ -1,0 +1,17 @@
+version: '3'
+volumes:
+  pgdata: 
+networks: 
+  banco:
+  web:
+  fila:
+services: 
+  db:
+    build: database
+    volumes:
+      # Volume dos dados
+      - pgdata:/var/lib/postgresql/data
+    networks: 
+      - banco
+    ports:
+      - 9999:5432

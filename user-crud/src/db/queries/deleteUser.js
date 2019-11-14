@@ -2,7 +2,7 @@ const databasePool = require("../client")
 
 module.exports = (request, response) => {
     try {
-        pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+      databasePool.query('SELECT * FROM user_account ORDER BY id ASC', (error, results) => {
             if (error) {
               throw error
             }
