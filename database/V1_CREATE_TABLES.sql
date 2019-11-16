@@ -13,6 +13,8 @@ create table user_account (
     address text null
 );
 
+insert into user_account (id, name, email, password) values (default, 'George Karan', 'georgekaran12@gmail.com', '123');
+
 create table event (
     id serial PRIMARY KEY,
     name text not null,
@@ -21,6 +23,9 @@ create table event (
     price decimal(10,2) not null,
     capacity int not null
 );
+
+insert into event (id, name, date, place, price, capacity) 
+values (default, 'EVENTO 1', NOW(), 'Lajeado', 0.00, 100);
 
 create table user_event (
     id serial PRIMARY KEY,
@@ -39,6 +44,9 @@ create table user_event (
     ON UPDATE NO ACTION
 );
 
+insert into user_event (id, id_event, id_user_account)
+values (default, 1, 1);
+
 create table event_checkin (
     id serial PRIMARY KEY,
     id_user_event SERIAL NOT NULL,
@@ -49,6 +57,8 @@ create table event_checkin (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
+
+--INSERT INTO event_checkin ( id_user_event, date, id ) VALUES (1,"2019-11-16",DEFAULT);
 
 create table user_event_certificate (
     id serial PRIMARY KEY,
