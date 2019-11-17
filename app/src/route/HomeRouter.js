@@ -12,6 +12,7 @@ export default () => {
         <Router>
             <Switch>
                 <Route exact path={path}>
+                    
                 </Route>
                 <Route path={`${path}/:nestedPageName`}>
                 </Route>

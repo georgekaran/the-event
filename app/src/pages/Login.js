@@ -53,7 +53,11 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn = ({ message }) => {
   const methods = useForm();
-  const onSubmit = data => { console.log(data) }  
+
+  const onSubmit = data => { 
+    console.log(data) 
+  }
+
   const classes = useStyles();
 
   return (
@@ -107,7 +111,7 @@ const SignIn = ({ message }) => {
                 </Link>
                 </Grid>
                 <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                     {message["label_dont_have_account"]}
                 </Link>
                 </Grid>
