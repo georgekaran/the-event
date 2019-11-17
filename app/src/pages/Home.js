@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import PersonIcon from '@material-ui/icons/Person';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -21,19 +22,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import { mainListItems, secondaryListItems } from '../components/menu/ListItem';
 import InsertItemType from './InsertItemType';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -144,12 +132,10 @@ export default function Dashboard({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            The-Event
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+              <PersonIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -175,7 +161,6 @@ export default function Dashboard({ children }) {
         <Container maxWidth="lg" className={classes.container}>
             {children}
         </Container>
-        <Copyright />
       </main>
     </div>
   );

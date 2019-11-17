@@ -10,6 +10,10 @@ class EventService {
         this.eventDAO.getById({id}, cb);
     };
 
+    getByUserId(id, cb) {
+        this.eventDAO.getByUserId({id}, cb);
+    };
+
     create(values, cb) {
         let event = values;
         return this.eventDAO.insert({values: event}, cb);

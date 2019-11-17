@@ -45,9 +45,6 @@ export default function MediaCard({ event, image }) {
         <Button size="small" color="primary">
           Inscrever-se
         </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
       </CardActions>
     </Card>
   );

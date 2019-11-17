@@ -21,12 +21,13 @@ class CheckinController {
 
     getById(req, res) {
         const id = req.params.id;
+        console.log(id);
         request(() => {
-            this.checkinService.getById(id, (user) => {
-                if(!!user){
-                    res.status(200).send(user);
+            this.checkinService.getById(id, (checkin) => {
+                if(!!checkin){
+                    res.status(200).send(checkin);
                 } else {
-                    res.status(404).send({message: `User with id ${id} not found`})
+                    res.status(404).send({message: `checkin with id ${id} not found`})
                 }
             })
         }, res);

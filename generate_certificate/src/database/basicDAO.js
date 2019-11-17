@@ -7,13 +7,7 @@ class BasicDAO {
     }
 
     getById(params, cb) {
-        return dao.selectOne({table: this.table, params}, cb);
-    };
-
-    getByUserId(params, cb) {
-        return dao.custom({sql: 'SELECT e.* from event e' + 
-                                ' inner join user_event ue on (e.id = ue.id_event)' 
-                                + ` where ue.id_user_account = ${params.id}`}, cb);
+        return dao.selectOne({table: this.table, ...params}, cb);
     };
 
     insert(params, cb) {

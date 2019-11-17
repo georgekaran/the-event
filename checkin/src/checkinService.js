@@ -7,7 +7,7 @@ class CheckinService {
     };
 
     getById(id, cb) {
-        this.checkinDAO.getById({id, fields: ['id', 'id_user_event', 'date']}, cb);
+        this.checkinDAO.getById({params: {id}, fields: ['id', 'id_user_event', 'date']}, cb)
     };
 
     getByEventId(id, cb) {
@@ -30,7 +30,7 @@ class CheckinService {
         let user = values;
         if(!!values.password) {
             user.password = UserService.encrypt(values.password);
-        }CheckinDAO
+        }
         return this.checkinDAO.update({values: user, params}, cb);
     }
 

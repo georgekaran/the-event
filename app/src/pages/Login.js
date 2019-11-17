@@ -61,8 +61,8 @@ const SignIn = ({ message, ...props }) => {
     console.log(data)
     const resp = await Api.auth.login(data);
     if (resp.status === 200) {
-      sessionStorage.setItem('user', resp.data.user)
-      props.history.push('/home')
+      sessionStorage.setItem('user', JSON.stringify(resp.data.user))
+      window.location.reload()
     } else {
       setStateSnackbar({ open: true, message: 'Email ou senha incorretos', type: 'error' });
     }

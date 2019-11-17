@@ -16,6 +16,10 @@ router.get('/:id', (req, res) => {
     controller.getById(req, res);
 });
 
+router.get('/user/:id', (req, res) => {
+    controller.getByUserId(req, res);
+});
+
 router.put('/:id', (req, res) => {
     controller.update(req, res);
 });

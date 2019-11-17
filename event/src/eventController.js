@@ -33,6 +33,20 @@ class EventController {
         }, res);
     }
 
+    getByUserId(req, res) {
+        const id = req.params.id;
+        console.log(id);
+        request(() => {
+            this.eventService.getByUserId(id, (event) => {
+                if(!!event){
+                    res.status(200).send(event);
+                } else {
+                    res.status(404).send({message: `Event with id ${id} not found`})
+                }
+            })
+        }, res);
+    }
+
     getAll(req, res) {
         request(() => {
             this.eventService.getAll((eventList) => {

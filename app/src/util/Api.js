@@ -46,6 +46,17 @@ class Event {
                 return e;
             })
     }
+
+    static getEventsByUser(id) {
+        return axios.get(EVENT_URL + `/user/${id}`)
+            .then(resp => {
+                console.log(resp);
+                return resp;
+            }).catch(e => {
+                console.log(e);
+                return e;
+            })
+    }
 }
 
 export default class Api {
