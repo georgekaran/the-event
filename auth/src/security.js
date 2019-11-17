@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const secretKey = 'lansando_a_braba';
-const jwt_name = 'cesar_session';
+const jwt_name = 'event_session';
 
 function decodeRequestToken(req){
     const token = req.cookies[jwt_name];

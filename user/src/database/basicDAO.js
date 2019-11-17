@@ -10,6 +10,10 @@ class BasicDAO {
         return dao.selectOne({table: this.table, ...params}, cb);
     };
 
+    getByEmail(params, cb) {
+        return dao.custom({sql: `select * from user_account where email = '${params.email}'`}, cb);
+    }
+
     insert(params, cb) {
         return dao.insert({table: this.table, ...params}, cb);
     }

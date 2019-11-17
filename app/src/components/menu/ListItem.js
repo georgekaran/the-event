@@ -5,11 +5,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import HomeIcon from '@material-ui/icons/Home';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ListItemLink from './ListItemLink';
 
 const Link2 = React.forwardRef((props, ref) => (
     <Link innerRef={ref} to="/getting-started/installation/" {...props} />
@@ -17,36 +19,9 @@ const Link2 = React.forwardRef((props, ref) => (
 
 export const mainListItems = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
+    <ListItemLink button to="/" icon={<HomeIcon/>} primary="Eventos" />
+    <ListItemLink button to="/events" icon={<ShoppingCartIcon/>} primary="Meus Eventos" />
+    <ListItemLink button to="/certificate" icon={<LayersIcon/>} primary="Certificados" />
   </div>
 );
 

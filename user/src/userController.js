@@ -8,13 +8,18 @@ class UserController {
 
     create(req, res) {
         const user = req.body;
+        const userExist = this.userService.getByEmail(user.email, async (resp) => await resp);
+        while (userExist == undefined) {}
+        if (userExist.length > 0) {
+            res.status(400).send({message: 'Usuário já foi cadastrado com esse email'});
+        }
         request(() => {
             if(!!user) {
                 this.userService.create(user, (props) => {
-                    res.status(201).send({message: `User ${user.name} has been created!`});
+                    res.status(201).send({message: `Usuário ${user.name} foi inserido!`});
                 });
             } else {
-                return res.status(400).send({message: 'Not a valid user'});
+                return res.status(400).send({message: 'Não é um usuário valido'});
             }
         }, res);
     }

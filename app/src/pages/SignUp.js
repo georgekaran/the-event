@@ -23,6 +23,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import CustomizedSnackbars from '../components/snackbar/CustomSnackBar';
 
 function Copyright() {
   return (
@@ -32,7 +33,7 @@ function Copyright() {
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
+      {'.'}17/11/2019
     </Typography>
   );
 }
@@ -74,6 +75,7 @@ const SignUpSchema = yup.object().shape({
 export default function SignUp() {
   const [stateGender, setStateGender] = useState({ gender: "M" });
   const [stateDate, setStateDate] = useState({ date_birth: new Date() });
+  const [stateSnackbar, setStateSnackbar] = useState({ open: false, message: '', type: 'success' });
 
   const methods = useForm({
     validationSchema: SignUpSchema
@@ -82,7 +84,14 @@ export default function SignUp() {
   const onSubmit = async (data) => {
     const mergeData = Object.assign(data, stateGender, stateDate);
     delete mergeData.passwordConfirmation
-    await Api.user.create(mergeData);
+    const resp = await Api.user.create(mergeData);
+    console.log(resp);
+    if (resp.status === 201) {
+      setStateSnackbar({ open: true, message: 'Usuário cadastrado com sucesso', type: 'success' });
+    } else {
+      console.log("RESP",resp);
+      setStateSnackbar({ open: true, message: 'Erro ao cadastrar usuário', type: 'error' });
+    }
   }
   
   const handleGenderChange = (e) => {
@@ -227,6 +236,9 @@ export default function SignUp() {
       <Box mt={5}>
         <Copyright />
       </Box>
+      <CustomizedSnackbars message={stateSnackbar.message}
+                           type={stateSnackbar.type}
+                           open={stateSnackbar.open} />
     </Container>
   );
 }

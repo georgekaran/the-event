@@ -15,6 +15,10 @@ class UserService {
         this.userDAO.getById({id, fields: ['id', 'name', 'email']}, cb);
     };
 
+    getByEmail(email, cb) {
+        this.userDAO.getByEmail({email, fields: ['id', 'name', 'email']}, cb);
+    };
+
     create(values, cb) {
         let user = values;
         user.password = UserService.encrypt(values.password);

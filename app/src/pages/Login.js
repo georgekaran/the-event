@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import ContextEnhancer from '../ContextEnhancer';
 import useForm, { FormContext } from "react-hook-form"
 import TextFieldRegister from '../components/input/TextFieldRegister';
+import Api from '../util/Api';
+import CustomizedSnackbars from '../components/snackbar/CustomSnackBar';
 
 function Copyright() {
   return (
@@ -51,11 +53,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignIn = ({ message }) => {
+const SignIn = ({ message, ...props }) => {
+  const [stateSnackbar, setStateSnackbar] = useState({ open: false, message: '', type: 'success' });
   const methods = useForm();
 
-  const onSubmit = data => { 
-    console.log(data) 
+  const onSubmit = async data => { 
+    console.log(data)
+    const resp = await Api.auth.login(data);
+    if (resp.status === 200) {
+      sessionStorage.setItem('user', resp.data.user)
+      props.history.push('/home')
+    } else {
+      setStateSnackbar({ open: true, message: 'Email ou senha incorretos', type: 'error' });
+    }
+    console.log("AAAAAAAAAAAAAaa", await Api.auth.login(data));
   }
 
   const classes = useStyles();
@@ -122,6 +133,9 @@ const SignIn = ({ message }) => {
       <Box mt={8}>
         <Copyright />
       </Box>
+      <CustomizedSnackbars message={stateSnackbar.message}
+                           type={stateSnackbar.type}
+                           open={stateSnackbar.open} />
     </Container>
   );
 }

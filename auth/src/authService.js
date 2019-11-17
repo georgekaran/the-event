@@ -3,7 +3,7 @@ const AuthDAO = require('./authDAO');
 
 
 function validateLogin(credentials, user, res) {
-    if (!!user && user.active && Security.compareEncryptPassword({
+    if (!!user && Security.compareEncryptPassword({
         encryptPassword: user.password,
         password: credentials.password
     })) {
