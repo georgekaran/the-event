@@ -14,6 +14,10 @@ class ActivityConsultDAO {
         return dao.custom({ sql: `SELECT id_event as "id" from user_event where id_user_account = ${params.id} and status = 'A'`}, cb);
     };
 
+    getEventsID(params, cb) {
+        return dao.custom({ sql: `SELECT id_event as "id" from user_event where id_user_account = ${params.id} and status = 'A'`}, cb);
+    };
+
     getUsersByEventId(params, cb) {
         return dao.custom({ sql: `select uc.* 
                                 from user_event ue 

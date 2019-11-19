@@ -48,7 +48,7 @@ const MyEvent = (props) => {
     useEffect(() => {
         async function getAllEvents() {
             const id = JSON.parse(sessionStorage.getItem('user')).id
-            const events = await Api.event.getEventsByUser(id);
+            const events = await Api.userEvent.getSubscribedEvents(id);
             setState(events.data);
             console.log(events.data);
         }

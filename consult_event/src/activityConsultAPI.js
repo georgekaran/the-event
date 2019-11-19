@@ -16,6 +16,10 @@ router.get('/event/subscribre/:userId', (req, res) => {
     controller.getEventsSubscribre(req, res);
 });
 
+router.get('/event/not-subscribre/:userId', (req, res) => {
+    controller.getEventsNotSubscribre(req, res);
+});
+
 router.get('/not-event/user/:id', (req, res) => {
     controller.getEventsWhereUserNotIn(req, res);
 });

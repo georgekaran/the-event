@@ -9,7 +9,11 @@ router.post('/', (req, res) => {
 });
 
 router.post('/events', (req, res) => {
-    controller.create(req, res);
+    controller.findEventsById(req, res);
+});
+
+router.post('/events/not', (req, res) => {
+    controller.findEventsNotInId(req, res);
 });
 
 router.get('/', (req, res) => {

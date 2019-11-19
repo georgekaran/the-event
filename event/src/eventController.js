@@ -21,10 +21,25 @@ class EventController {
 
     findEventsById(req, res) {
         const eventsId = req.body;
+        console.log(eventsId);
         request(() => {
-            if(!!event) {
-                this.eventService.create(event, (props) => {
-                    res.status(201).send({message: `Event ${event.name} has been created!`});
+            if(!!eventsId) {
+                this.eventService.findEventsById(eventsId, (props) => {
+                    res.status(201).send({ events: props });
+                });
+            } else {
+                return res.status(400).send({message: 'Not a valid event'});
+            }
+        }, res);
+    }
+
+    findEventsNotInId(req, res) {
+        const eventsId = req.body;
+        console.log(eventsId);
+        request(() => {
+            if(!!eventsId) {
+                this.eventService.findEventsNotInId(eventsId, (props) => {
+                    res.status(201).send({ events: props });
                 });
             } else {
                 return res.status(400).send({message: 'Not a valid event'});

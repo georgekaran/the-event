@@ -11,7 +11,13 @@ class EventService {
     };
 
     findEventsById(ids, cb) {
-        this.eventDAO.getById({id}, cb);
+        console.log(ids)
+        this.eventDAO.findEventsById(ids, cb);
+    }
+
+    findEventsNotInId(ids, cb) {
+        console.log(ids)
+        this.eventDAO.findEventsNotInId(ids, cb);
     }
 
     getByUserId(id, cb) {

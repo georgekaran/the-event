@@ -16,6 +16,14 @@ class BasicDAO {
                                 + ` where ue.id_user_account = ${params.id}`}, cb);
     };
 
+    findEventsById(params, cb) {
+        return dao.custom({sql: 'SELECT * FROM event WHERE id = ANY($1::int[])', values: [params]}, cb);
+    };
+
+    findEventsNotInId(params, cb) {
+        return dao.custom({sql: 'SELECT * FROM event WHERE id <> ANY($1::int[])', values: [params]}, cb);
+    };
+
     insert(params, cb) {
         return dao.insert({table: this.table, ...params}, cb);
     }

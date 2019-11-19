@@ -47,7 +47,8 @@ const Event = (props) => {
     const [state, setState] = useState([])
     useEffect(() => {
         async function getAllEvents() {
-            const events = await Api.event.getAll();
+            const id = JSON.parse(sessionStorage.getItem('user')).id
+            const events = await Api.event.getAll(id);
             setState(events.data);
             console.log(events.data);
         }

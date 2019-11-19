@@ -37,12 +37,44 @@ class ActivityConsultController {
         const context = this;
         const userId = req.params.userId;
         console.log(userId)
-        this.activityConsultService.getEventsSubscribre(userId, (activity) => {
+        this.activityConsultService.getEventsSubscribre(userId, async (activity) => {
             console.log(activity);
             if(!!activity) {
-                // const response = await request.post('http://localhost:5004/api/', activity);
-                // let events = []
-                res.status(200).send(activity);
+                const eventsId = activity.map(event => event.id)
+                console.log(eventsId);
+                request({
+                    url: 'http://localhost:5004/api/events',
+                    method: 'POST',
+                    json: eventsId
+                  }, function(error, response, body){
+                      if (body.events) {
+                        res.status(200).send(body.events);
+                      }
+                  });
+            } else {
+                res.status(404).send({message: `Events with id_user ${userId} not found`})
+            }
+        })
+    }
+
+    async getEventsNotSubscribre(req, res) {
+        const context = this;
+        const userId = req.params.userId;
+        console.log(userId)
+        this.activityConsultService.getEventsSubscribre(userId, async (activity) => {
+            console.log(activity);
+            if(!!activity) {
+                const eventsId = activity.map(event => event.id)
+                console.log(eventsId);
+                request({
+                    url: 'http://localhost:5004/api/events/not',
+                    method: 'POST',
+                    json: eventsId
+                  }, function(error, response, body){
+                      if (body.events) {
+                        res.status(200).send(body.events);
+                      }
+                  });
             } else {
                 res.status(404).send({message: `Events with id_user ${userId} not found`})
             }
