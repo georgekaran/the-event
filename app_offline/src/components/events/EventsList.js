@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
-  },
+  }
 }));
 
 export default function EventList(props) {
@@ -47,7 +47,7 @@ export default function EventList(props) {
     <List className={classes.root}>
         {stateEvents.map((event, idx) => {
            return (
-            <ListItem key={idx} onClick={() => handleOnItemClick(event.id)}>
+            <ListItem style={{ cursor: 'pointer' }} key={idx} onClick={() => handleOnItemClick(event.id)}>
               <ListItemAvatar>
                 <Avatar src={eventImages[event.id]}>
                 </Avatar>

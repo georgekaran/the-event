@@ -63,7 +63,7 @@ const MyEvent = (props) => {
             <Grid container spacing={3}>
                 <Grid item xs={12} md={4} lg={3}>
                   {state !== [] && state.map((event, idx) => {
-                      return <EventCard key={idx} event={event} image={eventImages[event.id]} />
+                      return <EventCard key={idx} event={event} image={eventImages[event.id]} isEventSub={false} />
                   })}
                   {state.length == 0 && <div>Você não possui nenhum evento</div>}
                 </Grid>

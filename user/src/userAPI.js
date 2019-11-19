@@ -8,6 +8,10 @@ router.post('/', (req, res) => {
     controller.create(req, res);
 });
 
+router.post('/getAllInId', (req, res) => {
+    controller.getAllInId(req, res);
+});
+
 router.get('/', (req, res) => {
     controller.getAll(req, res);
 });

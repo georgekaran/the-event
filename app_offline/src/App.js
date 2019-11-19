@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import EventList from './components/events/EventsList'
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 function App(props) {

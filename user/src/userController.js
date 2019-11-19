@@ -8,15 +8,10 @@ class UserController {
 
     create(req, res) {
         const user = req.body;
-        const userExist = this.userService.getByEmail(user.email, async (resp) => await resp);
-        while (userExist == undefined) {}
-        if (userExist.length > 0) {
-            res.status(400).send({message: 'Usuário já foi cadastrado com esse email'});
-        }
         request(() => {
             if(!!user) {
                 this.userService.create(user, (props) => {
-                    res.status(201).send({message: `Usuário ${user.name} foi inserido!`});
+                    return res.status(201).send({message: `Usuário ${user} foi inserido!`});
                 });
             } else {
                 return res.status(400).send({message: 'Não é um usuário valido'});
@@ -60,6 +55,15 @@ class UserController {
         request(() => {
             this.userService.delete(id, (props) => {
                 res.status(200).send({message: "Delete successfully"});
+            })
+        }, res);
+    }
+
+    getAllInId(req, res) {
+        const ids = req.body.ids;
+        request(() => {
+            this.userService.getAllInId(ids, (props) => {
+                res.status(200).send({message: "getAllInId successfully"});
             })
         }, res);
     }

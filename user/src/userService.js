@@ -42,6 +42,10 @@ class UserService {
     getAll(cb) {
         return this.userDAO.getAll({fields: ['id', 'name', 'email']}, cb);
     }
+
+    getAllInId(ids, cb) {
+        return this.userDAO.getAllInId(ids, cb);
+    }
 }
 
 module.exports = UserService;

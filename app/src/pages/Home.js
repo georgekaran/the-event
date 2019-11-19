@@ -117,6 +117,11 @@ export default function Dashboard({ children }) {
   let { path, url } = useRouteMatch();
   console.log(children);
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('user');
+    window.location.reload();
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -134,8 +139,8 @@ export default function Dashboard({ children }) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             The-Event
           </Typography>
-          <IconButton color="inherit">
-              <PersonIcon />
+          <IconButton color="inherit" onClick={handleLogout}>
+              Deslogar-se
           </IconButton>
         </Toolbar>
       </AppBar>

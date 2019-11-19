@@ -19,6 +19,19 @@ class EventController {
         }, res);
     }
 
+    findEventsById(req, res) {
+        const eventsId = req.body;
+        request(() => {
+            if(!!event) {
+                this.eventService.create(event, (props) => {
+                    res.status(201).send({message: `Event ${event.name} has been created!`});
+                });
+            } else {
+                return res.status(400).send({message: 'Not a valid event'});
+            }
+        }, res);
+    }
+
     getById(req, res) {
         const id = req.params.id;
         console.log(id);

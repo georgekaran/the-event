@@ -10,6 +10,10 @@ class EventService {
         this.eventDAO.getById({id}, cb);
     };
 
+    findEventsById(ids, cb) {
+        this.eventDAO.getById({id}, cb);
+    }
+
     getByUserId(id, cb) {
         this.eventDAO.getByUserId({id}, cb);
     };

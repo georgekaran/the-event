@@ -86,12 +86,7 @@ export default function SignUp() {
     delete mergeData.passwordConfirmation
     const resp = await Api.user.create(mergeData);
     console.log(resp);
-    if (resp.status === 201) {
-      setStateSnackbar({ open: true, message: 'Usuário cadastrado com sucesso', type: 'success' });
-    } else {
-      console.log("RESP",resp);
-      setStateSnackbar({ open: true, message: 'Erro ao cadastrar usuário', type: 'error' });
-    }
+    setStateSnackbar({ open: true, message: 'Usuário cadastrado com sucesso', type: 'success' });
   }
   
   const handleGenderChange = (e) => {

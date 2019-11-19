@@ -30,6 +30,10 @@ class BasicDAO {
         return dao.selectMany({table: this.table, ...params}, cb);
     }
 
+    getAllInId(params, cb) {
+        return dao.custom({sql: `SELECT * FROM user_account where id in ${params}`}, cb);
+    }
+
 }
 
 module.exports = BasicDAO;
