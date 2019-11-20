@@ -90,6 +90,19 @@ class ActivityConsultController {
         })
     }
 
+    getCheckin(req, res) {
+        const context = this;
+        const userId = req.params.userId;
+        console.log(userId)
+        this.activityConsultService.getEventsFull(userId, async (events) => {
+            if(!!events) {
+                res.status(200).send(events);
+            } else {
+                res.status(404).send({message: `Checkin with id ${userId} not found`})
+            }
+        })
+    }
+
     getEventsWhereUserNotIn(req, res) {
         const userId = req.params.id;
         requestA(() => {

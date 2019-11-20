@@ -4,5 +4,5 @@ const server = require('./server');
 const port = Config.APP.PORT;
 server.listen(port, () => {
     console.info(`Listening on port ${port}...`);
-    console.info(`Events User Server started!`)
+    console.info(`Generate Certificate Server started!`)
 });

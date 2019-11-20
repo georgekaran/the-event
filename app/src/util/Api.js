@@ -95,6 +95,17 @@ class UserEvent {
                 return e;
             })
     }
+
+    static getCheckin(userID) {
+        return axios.get(CONSULT_USER_EVENT_URL + `/event/checkin/${userID}`)
+            .then(resp => {
+                console.log(resp);
+                return resp;
+            }).catch(e => {
+                console.log(e);
+                return e;
+            })
+    }
 }
 
 export default class Api {

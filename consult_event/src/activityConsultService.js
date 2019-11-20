@@ -21,6 +21,10 @@ class ActivityConsultService {
         this.activityConsultDAO.getEventsID({id}, cb);
     }
 
+    getEventsFull(id, cb) {
+        this.activityConsultDAO.getEventsFull({id}, cb);
+    }
+
     getUsersByEventId(id, cb) {
         this.activityConsultDAO.getUsersByEventId({ id }, cb);
     }
