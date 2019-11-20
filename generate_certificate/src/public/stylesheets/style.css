@@ -1,0 +1,54 @@
+* {
+    font-family: 'Inconsolata', serif;
+}
+
+body {
+    margin: 20px;
+}
+
+.background-image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    filter: grayscale(1);
+    opacity: 0.3;
+}
+
+.certificate-container {
+    position: relative;
+    padding: 30px;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    border: 2px dashed blue;
+}
+
+.certificate-title {
+    text-align: center;
+}
+
+.certificate-text {
+    font-size: 20px;
+}
+
+.certificate.locale {
+    text-align: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.signature > * {
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+.footer {
+    position: absolute;
+    bottom: 30;
+    left: 30;
+    right: 30;
+}

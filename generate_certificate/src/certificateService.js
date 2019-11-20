@@ -14,7 +14,7 @@ class CertificateService {
     }
 
     getById(id, cb) {
-        this.certificateDAO.getById({id, fields: ['id', 'name', 'email']}, cb);
+        this.certificateDAO.getById({params: {id}}, cb);
     };
 
     create(values, cb) {
@@ -32,15 +32,12 @@ class CertificateService {
 
     update(id, values, cb) {
         const params = {id};
-        let user = values;
-        if(!!values.password) {
-            user.password = CertificateService.encrypt(values.password);
-        }
-        return this.certificateDAO.update({values: user, params}, cb);
+        let certificate = values;
+        return this.certificateDAO.update({values: certificate, params}, cb);
     }
 
     getAll(cb) {
-        return this.certificateDAO.getAll({fields: ['id', 'name', 'email']}, cb);
+        return this.certificateDAO.getAll({}, cb);
     }
 }
 

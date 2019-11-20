@@ -1,0 +1,33 @@
+extends base
+
+block content
+    img.background-image(src= template.background_image,  height='100%')
+    div.certificate-container
+        h1.certificate-title= certificate.title
+        p.certificate-text
+            | Certificamos que 
+            span.bold #{user.name} 
+            |  participou do 
+            span.bold #{event.name}
+            | . Este certificado possuiu um lero lero a seguir, para o desenvolvimento contínuo de distintas 
+            | formas de atuação estimula a padronização dos relacionamentos verticais entre as hierarquias. 
+            | O que temos que ter sempre em mente é que o consenso sobre a necessidade de qualificação maximiza 
+            | as possibilidades por conta do processo de comunicação como um todo.
+        p.certificate-text
+            | Ainda assim, existem dúvidas a respeito de como a execução dos pontos do programa exige a precisão 
+            | e a definição dos níveis de motivação departamental. A prática cotidiana prova que a constante 
+            | divulgação das informações desafia a capacidade de equalização da gestão inovadora da qual fazemos 
+            | parte. No mundo atual, a consulta aos diversos militantes auxilia a preparação e a composição do 
+            | impacto na agilidade decisória. 
+        p.certificate-text
+            | É claro que a competitividade nas transações comerciais é uma das consequências dos conhecimentos 
+            | estratégicos para atingir a excelência. Percebemos, cada vez mais, que a mobilidade dos capitais 
+            | internacionais ainda não demonstrou convincentemente que vai participar na mudança dos paradigmas 
+            | corporativos
+        div.footer
+            div.signature
+                div.signature-description Assinatura do chefe
+                img(src= template.signature, width=400)
+            p.certificate.locale
+                span.bold #{event.place}, #{event.date}
+            
