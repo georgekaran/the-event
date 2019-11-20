@@ -26,9 +26,11 @@ class CertificateController {
 
     create(req, res) {
         const eventCertificate = req.body;
+        console.log(req.body)
         let checkin = undefined;
         const context = this;
         return request.get(CHECKIN_URL + `/${eventCertificate.id_user_event}`, function(error, response, body) {
+            console.log(response)
             if (response && response.statusCode === 200) {
                 checkin = JSON.parse(body);
                 return requestCustom(() => {
@@ -41,7 +43,16 @@ class CertificateController {
                     }
                 }, res)
             } else {
-                return res.status(403).send({message: 'Não pode gerar certificado'});
+                checkin = JSON.parse(body);
+                return requestCustom(() => {
+                    if(!!eventCertificate) {
+                        return context.certificateService.create(eventCertificate, (props) => {
+                           return res.status(201).send({message: `Certificado gerado com sucesso!`});
+                        });
+                    } else {
+                        return res.status(400).send({message: 'Não há informações válidas'});
+                    }
+                }, res)
             }
         })
     }
@@ -54,8 +65,9 @@ class CertificateController {
                 const result = JSON.parse(body);
                 return requestCustom(() => {
                     if(!!result) {
-                        return context.certificateService.getById(id, (certificate) => {
+                        return context.certificateService.getByUserEventId(id, (certificate) => {
                             result.event.date = formatDate(result.event.date);
+                            console.log(certificate);
                             const template = templates.find(t => t.id = certificate.template) || templates[0]; 
                             res.render('certificate', {certificate, event: result.event, user: result.client, template});
                         })

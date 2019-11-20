@@ -17,6 +17,10 @@ class CertificateService {
         this.certificateDAO.getById({params: {id}}, cb);
     };
 
+    getByUserEventId(id_user_event, cb) {
+        this.certificateDAO.getByUserEventId({id_user_event}, cb);
+    };
+
     create(values, cb) {
         let checkin = values;
         checkin.auth = CertificateService.encrypt(checkin.id_user_event);

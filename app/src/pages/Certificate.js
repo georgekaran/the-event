@@ -11,7 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
 import Typography from '@material-ui/core/Typography';
 import Api from '../util/Api';
+import axios from 'axios';
 
+const CERTIFICATE_URL = 'http://localhost:5005/api'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,17 +41,33 @@ export default function Certificate() {
         getAllEvents()
     }, [])
 
-    const handleGenerateCertificate = () => {
-        
+    const handleGenerateCertificate = (event) => {
+        axios.post(CERTIFICATE_URL, { id_user_event: event.id_user_event })
+        .then(resp => {
+            console.log(resp)
+        }).catch(e => {
+            console.log(e);
+        })
+    }
+
+    const handleConsultCertificate = (event) => {
+        axios.get(CERTIFICATE_URL + '/' + event.id_user_event)
+        .then(resp => {
+            console.log(resp)
+            let newWindow = window.open();
+            newWindow.document.write(resp.data);
+        }).catch(e => {
+            console.log(e);
+        })
     }
 
     return (
         <div className={classes.root}>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Gerar certificados
+            Meus Certificados
           </Typography>
           <List component="nav" aria-label="secondary mailbox folder">
-            {state !== [] && state.map(event => {
+            {state !== [] && state.filter(eve => eve.auth != null).map(event => {
                 return (<ListItem
                     selected={selectedIndex === 2}
                     selected={selectedIndex === 2}
@@ -58,7 +76,28 @@ export default function Certificate() {
                         <ListItemText primary={`${event.name}`} />
                         <ListItemSecondaryAction>
                             <IconButton edge="end" aria-label="comments">
-                                <LabelImportantIcon titleAccess="Gerar certificado" />
+                                <LabelImportantIcon titleAccess="Gerar certificado" 
+                                onClick={() => handleConsultCertificate(event)} />
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>)
+            })}
+            </List>
+          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+            Gerar certificados
+          </Typography>
+          <List component="nav" aria-label="secondary mailbox folder">
+            {state !== [] && state.filter(eve => eve.auth == null).map(event => {
+                return (<ListItem
+                    selected={selectedIndex === 2}
+                    selected={selectedIndex === 2}
+                    onClick={a => handleListItemClick(a, 2)}
+                    >
+                        <ListItemText primary={`${event.name}`} />
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="comments">
+                                <LabelImportantIcon titleAccess="Gerar certificado" 
+                                onClick={() => handleGenerateCertificate(event)} />
                             </IconButton>
                         </ListItemSecondaryAction>
                     </ListItem>)

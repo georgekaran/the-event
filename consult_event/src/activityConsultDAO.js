@@ -15,9 +15,10 @@ class ActivityConsultDAO {
     };
 
     getEventsFull(params, cb) {
-        return dao.custom({ sql: `SELECT e.* from user_event ue
+        return dao.custom({ sql: `SELECT e.*, ec.*, ue.*, uec.* from user_event ue
         inner join event e on (e.id = ue.id_event) 
         inner join event_checkin ec ON (ec.id_user_event = ue.id) 
+        left join user_event_certificate uec on (uec.id_user_event = ue.id)
         where ue.id_user_account = ${params.id} and ue.status = 'A'`}, cb);
     };
 
