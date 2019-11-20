@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Api from '../../util/Api';
+import CustomizedSnackbars from '../snackbar/CustomSnackBar';
 
 const useStyles = makeStyles({
   card: {
@@ -20,11 +21,13 @@ const useStyles = makeStyles({
 
 export default function MediaCard({ event, image, isEventSub = true }) {
   const classes = useStyles();
+  const [stateSnackbar, setStateSnackbar] = useState({ open: false, message: '', type: 'success' });
 
   const handleRegistry = async (event) => {
     const user = JSON.parse(sessionStorage.getItem('user')).id
     const response = await Api.userEvent.create({ user, event });
     window.location.reload();
+    setStateSnackbar({ open: true, message: 'Usuário cadastrado com sucesso', type: 'success' });
   }
 
   const handleUnregistry = async (event) => {

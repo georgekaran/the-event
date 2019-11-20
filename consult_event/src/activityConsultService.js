@@ -18,7 +18,7 @@ class ActivityConsultService {
     }
 
     getEventsNotSubscribre(id, cb) {
-        this.activityConsultDAO.getEventsID({id}, cb);
+        this.activityConsultDAO.getEventsNotID({id}, cb);
     }
 
     getEventsFull(id, cb) {

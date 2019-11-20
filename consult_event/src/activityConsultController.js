@@ -61,7 +61,7 @@ class ActivityConsultController {
         const context = this;
         const userId = req.params.userId;
         console.log(userId)
-        this.activityConsultService.getEventsSubscribre(userId, async (activity) => {
+        this.activityConsultService.getEventsNotSubscribre(userId, async (activity) => {
             console.log("ACTIVITY", activity);
             if(activity.length > 0) {
                 const eventsId = activity.map(event => event.id)

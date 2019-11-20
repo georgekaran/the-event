@@ -20,22 +20,21 @@ class BasicDAO {
         and id_event = ${params.values.id_event}`}, (result) => {
             console.log("RESULTADO", result[0])
             if (result[0] != null) {
-                console.log("CAIUUUUUUUUUUUUU", result)
-                request({
-                    url: UNSUBSCRIBE_USER_EVENT_URL + "/",
-                    method: 'POST',
-                    body: {
-                        ...params
-                    },
-                    json: true}, 
-                    function(error, response, body2) {
-                        cb();
-                  })
+                this.updateActive({id_user_account: params.values.id_user_account, id_event: params.values.id_event}, cb)
             } else {
                 console.log("NNAO CAIUUUUUUUUUUU", result)
                 return dao.insert({table: this.table, ...params}, cb);
             }
         });
+    }
+
+    updateActive(params, cb) {
+        return dao.custom({ sql: `UPDATE user_event set status = 'A' where id_user_account = ${params.id_user_account} 
+        and id_event = ${params.id_user_account}`}, cb);
+    }
+
+    update(params, cb) {
+        return dao.update({table: this.table, ...params}, cb);
     }
 
     delete(params, cb) {

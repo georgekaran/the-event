@@ -21,8 +21,8 @@ create table event (
 
 create table user_event (
     id serial PRIMARY KEY,
-    id_event SERIAL NOT NULL,
-    id_user_account SERIAL NOT NULL,
+    id_event bigint NOT NULL,
+    id_user_account bigint NOT NULL,
     status CHAR,
     isSync boolean DEFAULT FALSE,
     CONSTRAINT "fk_event_id"
@@ -39,7 +39,7 @@ create table user_event (
 
 create table event_checkin (
     id serial PRIMARY KEY,
-    id_user_event SERIAL NOT NULL,
+    id_user_event bigint NOT NULL,
     date timestamp NOT NULL,
     isSync boolean DEFAULT FALSE,
     CONSTRAINT "fk_user_event_event_checkin_id"

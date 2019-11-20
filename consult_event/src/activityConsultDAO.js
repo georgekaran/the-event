@@ -14,6 +14,10 @@ class ActivityConsultDAO {
         return dao.custom({ sql: `SELECT id_event as "id" from user_event where id_user_account = ${params.id} and status = 'A'`}, cb);
     };
 
+    getEventsNotID(params, cb) {
+        return dao.custom({ sql: `SELECT id_event as "id" from user_event where id_user_account = ${params.id} and status = 'C'`}, cb);
+    };
+
     getEventsFull(params, cb) {
         return dao.custom({ sql: `SELECT e.*, ec.*, ue.*, uec.* from user_event ue
         inner join event e on (e.id = ue.id_event) 
@@ -22,9 +26,9 @@ class ActivityConsultDAO {
         where ue.id_user_account = ${params.id} and ue.status = 'A'`}, cb);
     };
 
-    getEventsID(params, cb) {
-        return dao.custom({ sql: `SELECT id_event as "id" from user_event where id_user_account = ${params.id} and status = 'A'`}, cb);
-    };
+    // getEventsID(params, cb) {
+    //     return dao.custom({ sql: `SELECT id_event as "id" from user_event where id_user_account = ${params.id} and status = 'A'`}, cb);
+    // };
 
     getUsersByEventId(params, cb) {
         return dao.custom({ sql: `select uc.* 

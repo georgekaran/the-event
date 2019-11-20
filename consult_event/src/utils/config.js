@@ -17,7 +17,7 @@ const Config = {
     },
     'DATABASE': {
         'USER': DB_USER || 'postgres',
-        'PASSWORD': DB_PASSWORD || 'george',
+        'PASSWORD': DB_PASSWORD || 'postgres',
         'HOST': DB_HOST || 'localhost',
         'NAME': DB_NAME || 'event',
         'PORT': DB_PORT || 5432,
