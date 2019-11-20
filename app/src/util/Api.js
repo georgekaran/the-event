@@ -5,6 +5,7 @@ const USER_URL = 'http://localhost:5001/api'
 const EVENT_URL = 'http://localhost:5004/api'
 const EMAIL_URL = 'http://localhost:5002/api'
 const USER_EVENT_URL = 'http://localhost:5012/api'
+const UNSUBSCRIBE_USER_EVENT_URL = 'http://localhost:5010/api'
 const CONSULT_USER_EVENT_URL = 'http://localhost:5011/api'
 
 
@@ -64,6 +65,17 @@ class Event {
 class UserEvent {
     static create(data) {
         return axios.post(USER_EVENT_URL + "/", data)
+            .then(resp => {
+                console.log(resp);
+                return resp;
+            }).catch(e => {
+                console.log(e);
+                return e;
+            })
+    }
+
+    static unsubscribe(data) {
+        return axios.put(UNSUBSCRIBE_USER_EVENT_URL + "/", data)
             .then(resp => {
                 console.log(resp);
                 return resp;

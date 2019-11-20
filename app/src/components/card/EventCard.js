@@ -29,7 +29,7 @@ export default function MediaCard({ event, image, isEventSub = true }) {
 
   const handleUnregistry = async (event) => {
     const user = JSON.parse(sessionStorage.getItem('user')).id
-    const response = await Api.userEvent.create({ user, event });
+    const response = await Api.userEvent.unsubscribe({ id_user_account: user, id_event: event });
     window.location.reload();
   }
 

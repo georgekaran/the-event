@@ -7,12 +7,21 @@ class ActivityCancelController {
     }
 
     cancel(req, res) {
-        const id = req.params.id;
+        const user_event = req.body;
         request(() => {
-            this.activityCancelService.cancel(id, (user) => {
+            this.activityCancelService.cancel(user_event, (user) => {
+                res.status(200).send({message: "Update successfully", user});
+            })
+        }, res);
+    }
+
+    reativate(req, res) {
+        const user_event = req.body;
+        request(() => {
+            this.activityCancelService.reativate(user_event, (user) => {
                 res.status(200).send({message: "Update successfully", user});
             })
         }, res);
     }
 }
- module.exports = ActivityCancelController;
+module.exports = ActivityCancelController;

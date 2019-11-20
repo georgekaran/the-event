@@ -17,14 +17,15 @@ const useStyles = makeStyles(theme => ({
   }));
 
 export default function CheckIn(props) {
-    const [state, setState] = useState()
+    const [stateUserNotCheckin, setStateUserNotCheckin] = useState()
     const classes = useStyles();
     let { id } = useParams();
 
     useEffect(() => {
         axios.get(CONSULT_USER_EVENT_URL + "/event/" + id)
             .then((resp) => {
-                setState(resp.data)
+                setStateUserNotCheckin(resp.data)
+                console.log(resp.data)
             }).catch((e) => {
                 console.log(e);
             })
@@ -38,7 +39,7 @@ export default function CheckIn(props) {
             <Typography component="h1" variant="h5">
                 Usuários que já registraram CheckIn:
             </Typography>
-
+            {stateUserNotCheckin && stateUserNotCheckin.map(user => <p>{user.name}</p>)}
             <Typography component="h1" variant="h5">
                 Usuários que ainda não registraram CheckIn:
             </Typography>

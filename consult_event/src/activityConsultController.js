@@ -62,10 +62,10 @@ class ActivityConsultController {
         const userId = req.params.userId;
         console.log(userId)
         this.activityConsultService.getEventsSubscribre(userId, async (activity) => {
-            console.log(activity);
-            if(!!activity) {
+            console.log("ACTIVITY", activity);
+            if(activity.length > 0) {
                 const eventsId = activity.map(event => event.id)
-                console.log(eventsId);
+                console.log("AAAA", activity);
                 request({
                     url: 'http://localhost:5004/api/events/not',
                     method: 'POST',
@@ -76,7 +76,16 @@ class ActivityConsultController {
                       }
                   });
             } else {
-                res.status(404).send({message: `Events with id_user ${userId} not found`})
+                request({
+                    url: 'http://localhost:5004/api/',
+                    method: 'GET',
+                  }, function(error, response, body){
+                      if (body) {
+                        res.status(200).send(body);
+                      } else {
+                        res.status(404).send({message: `Events with id_user ${body} not found`})
+                      }
+                  });
             }
         })
     }

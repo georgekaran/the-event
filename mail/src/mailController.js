@@ -9,6 +9,7 @@ class MailController {
     }
 
     async send(req, res) {
+        console.log("BODY", req.body);
         const type = req.body.type;
         let template = {};
         switch (type) {
